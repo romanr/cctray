@@ -1,104 +1,100 @@
 # CCTray
 
-A macOS menu bar application that monitors Claude Code usage in real-time, providing instant visibility into your AI development costs and usage patterns.
+[![Build Status](https://img.shields.io/github/actions/workflow/status/goniszewski/cctray/main.yml?branch=main&style=for-the-badge)](https://github.com/goniszewski/cctray/actions)
+[![Latest Release](https://img.shields.io/github/v/release/goniszewski/cctray?style=for-the-badge)](https://github.com/goniszewski/cctray/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+A macOS menu bar application that monitors Anthropic's Claude API usage in real-time. It provides instant visibility into your AI development costs and usage patterns, inspired by the excellent command-line tool [ccowl](https://github.com/sivchari/ccowl).
+
+> **✨ Fun Fact:** This application was developed almost exclusively using Anthropic's Claude.
 
 ## 🚀 Features
 
-- **Real-time Monitoring**: Live tracking of Claude Code usage via the `ccusage` CLI
-- **Smart Menu Bar Display**: Rotating display showing cost, burn rate, and remaining session time
-- **Customizable Interface**: Orange "C" icon with configurable update and rotation intervals
-- **Comprehensive Preferences**: Four-tab settings window (General, Display, Advanced, About)
-- **Intelligent Error Handling**: Exponential backoff, automatic Node.js path detection
-- **Performance Optimized**: Caching, background execution, and minimal resource usage
+- **Dynamic Menu Bar Icon**: The app icon provides at-a-glance insights with:
+    - **Color-Coded States**: Green (normal), Yellow (warning), and Red (critical) based on your usage thresholds.
+    - **Pulsing Animation**: A subtle pulse warns you when you're approaching limits.
+    - **Mini Progress Arc**: A circular progress bar around the icon shows token usage percentage.
+- **Rich Data Visualization**: The main view presents data visually for quick comprehension:
+    - **Progress Bars**: See your token usage against limits.
+    - **Trend Indicators**: Small arrows (↗️ ↘️ ↔️) show if your usage is increasing, decreasing, or stable.
+    - **Sparkline Charts**: Mini-graphs display recent usage patterns.
+    - **Color-Coded Metrics**: Key numbers are colored based on semantic thresholds for instant understanding.
+- **Quick Actions**: Access common tasks directly from the main menu:
+    - Copy usage data to the clipboard.
+    - Toggle critical notifications on/off.
+    - Keyboard shortcuts for power users.
+- **Real-time Monitoring**: Live tracking of Claude API usage via the `ccusage` CLI.
+- **Smart Rotating Display**: Cycles through key metrics like cost, burn rate, and remaining session time right in your menu bar.
+- **Deep Customization**: A comprehensive four-tab preferences window lets you control everything from refresh rates to visual thresholds.
+- **Robust & Efficient**: Features intelligent error handling, automatic Node.js path detection, and is optimized for minimal resource usage.
 
 ## 📱 Screenshots
 
-*Menu bar icon and dropdown coming soon*
+Here are a few glimpses of CCTray in action. For more, check out the full [screenshots directory](screenshots).
 
-*Preferences window screenshots coming soon*
+|               Menu Bar Icon & Dropdown                |                             Preferences                              |
+| :---------------------------------------------------: | :------------------------------------------------------------------: |
+| ![CCTray Menu Bar Icon](screenshots/menubar-icon.png) | ![CCTray General Preferences](screenshots/preferences-general-1.png) |
+|            *Real-time usage at a glance.*             |                    *Customize general settings.*                     |
+| ![CCTray Context Menu](screenshots/context-menu.png)  | ![CCTray Display Preferences](screenshots/preferences-display-1.png) |
+|        *Quick actions from the context menu.*         |                      *Fine-tune what you see.*                       |
 
 ## 🎯 Requirements
 
-- **macOS 13.0+** (macOS Ventura or later)
+- **macOS 13.0+** (Ventura or later)
 - **Node.js** (any version with npm)
 - **ccusage CLI tool** (`npm install -g ccusage`)
 
 ## 📦 Installation
 
-### 1. Install Dependencies
+#### 1. Install the CLI Dependency
 
-First, ensure you have Node.js and the ccusage CLI tool:
+First, ensure you have Node.js and install the `ccusage` CLI tool globally.
 
 ```bash
-# Install ccusage globally
 npm install -g ccusage
-
-# Verify installation
-ccusage --version
 ```
 
-### 2. Download CCTray
+#### 2. Install CCTray
 
-1. Download the latest release from [Releases](https://github.com/goniszewski/cctray/releases)
-2. Move `CCTray.app` to your Applications folder
-3. Launch CCTray
-
-### 3. Node.js Path Configuration
-
-CCTray automatically detects Node.js installations from:
-- **Homebrew**: `/opt/homebrew/bin/node`
-- **System**: `/usr/local/bin/node`, `/usr/bin/node`  
-- **nvm**: `~/.nvm/versions/node/*/bin/node`
-- **PATH environment variable**
-
-If auto-detection fails, manually configure the Node.js path in Preferences → Advanced.
+1.  Download the latest `CCTray.dmg` from the [Releases page](https://github.com/goniszewski/cctray/releases).
+2.  Open the DMG and drag `CCTray.app` to your Applications folder.
+3.  Launch CCTray.
 
 ## 🎮 Usage
 
 ### Basic Operation
 
-1. **Launch**: CCTray appears as an orange "C" in your menu bar
-2. **Click**: View detailed usage information in the dropdown
-3. **Rotating Display**: Icon cycles through cost → burn rate → remaining time every 5 seconds
-4. **Preferences**: Click "Preferences..." to customize settings
+1.  **Launch**: CCTray appears as an orange "C" in your menu bar.
+2.  **Click**: View detailed usage information in the dropdown menu.
+3.  **Rotating Display**: The menu bar icon cycles through cost → burn rate → remaining time.
+4.  **Preferences**: Click "Preferences..." in the dropdown to customize settings.
 
 ### Menu Bar States
 
-- **💤**: No active Claude Code session
-- **⏳**: Loading usage data
-- **❌**: Error connecting to ccusage
-- **C $X.XX**: Current session cost
-- **C XXX/min**: Current burn rate (tokens per minute)
-- **C XXmin**: Estimated time remaining
+-   **💤**: No active Claude session.
+-   **⏳**: Loading usage data.
+-   **❌**: Error fetching data from `ccusage`.
+-   **C $X.XX**: Current session cost.
+-   **C XXX/min**: Current burn rate (tokens per minute).
+-   **C XXmin**: Estimated time remaining in the session.
 
 ### Understanding Burn Rate Colors
 
-- **🟢 LOW**: < 300 tokens/min
-- **🟡 MEDIUM**: 300-700 tokens/min  
-- **🔴 HIGH**: > 700 tokens/min
+-   **🟢 LOW**: < 300 tokens/min
+-   **🟡 MEDIUM**: 300-700 tokens/min
+-   **🔴 HIGH**: > 700 tokens/min
 
 ## ⚙️ Configuration
 
-### General Settings
-- **Update Interval**: How often to fetch usage data (1-30 seconds)
-- **Display Components**: Toggle cost, burn rate, and remaining time
-- **Launch at Login**: Auto-start CCTray with macOS
+CCTray is highly customizable via the **Preferences** window, accessible from the menu bar dropdown.
 
-### Display Settings
-- **Rotation Speed**: How fast the menu bar display cycles (1-30 seconds)
-- **Decimal Places**: Cost display precision (0-3 decimal places)
-- **Burn Rate Thresholds**: Customize low/high warning levels
+You can configure:
+-   **General:** Set the data refresh rate and toggle "Launch at Login".
+-   **Display:** Control what information is shown (cost, burn rate, etc.), its rotation speed, and the color thresholds for burn rate warnings.
+-   **Advanced:** Manually specify paths for your Node.js executable and the `ccusage` script if auto-detection fails.
 
-### Advanced Settings
-- **Node.js Command**: Custom Node.js executable path
-- **ccusage Script**: Custom ccusage script location
-- **Reset to Defaults**: Restore all settings
-
-### About
-- **Version Information**: Current app version
-- **Author**: Robert Goniszewski
-
-## 🛠 Development
+## 🛠️ Development
 
 ### Building from Source
 
@@ -107,108 +103,74 @@ If auto-detection fails, manually configure the Node.js path in Preferences → 
 git clone https://github.com/goniszewski/cctray.git
 cd cctray
 
-# Open in Xcode
+# Open in Xcode and run
 open CCTray.xcodeproj
-
-# Build with Xcode (Cmd+B) or command line:
-xcodebuild -project CCTray.xcodeproj -scheme CCTray -configuration Debug
 ```
 
 ### Running Tests
 
 ```bash
-# Unit tests
+# Run unit tests from the command line
 xcodebuild test -project CCTray.xcodeproj -scheme CCTray -destination 'platform=macOS'
 
-# In Xcode: Cmd+U for all tests
+# Or, run all tests in Xcode using the shortcut Cmd+U
 ```
 
 ### Architecture Overview
 
-CCTray follows modern SwiftUI patterns with:
+CCTray follows modern SwiftUI patterns, including MVVM architecture, actor-based services for safe concurrency, and `@AppStorage` for persistent state management.
 
-- **MVVM Architecture**: Clean separation of Models, Views, and ViewModels
-- **Actor-based Services**: Safe async operations with `CommandExecutor`
-- **State Management**: `@StateObject`, `@EnvironmentObject`, and `@AppStorage`
-- **Menu Bar Integration**: Modern `MenuBarExtra` with `SettingsLink`
-
-**Key Components:**
-- `UsageMonitor`: Core business logic and data fetching
-- `CommandExecutor`: Secure shell command execution with caching
-- `AppPreferences`: User settings with persistent storage
-- `PreferencesView`: Four-tab settings interface
-
-### File Structure
-
-```
-CCTray/
-├── CCTray/
-│   ├── Models/           # Data models and enums
-│   ├── Views/            # SwiftUI views and UI components
-│   ├── ViewModels/       # Business logic and state management
-│   ├── Services/         # External service integration
-│   └── Utilities/        # Helper classes and extensions
-├── CCTrayTests/          # Unit tests
-└── CCTrayUITests/        # UI tests
-```
+-   `UsageMonitor`: Core business logic and data fetching.
+-   `CommandExecutor`: Secure shell command execution with caching.
+-   `AppPreferences`: User settings with persistent storage.
+-   `PreferencesView`: The four-tab settings interface.
 
 ## 🔧 Troubleshooting
 
-### Common Issues
+#### "Command not found" or Menu Bar shows "❌"
 
-**"Command not found" Error**
-- Ensure Node.js is installed and accessible
-- Check Node.js path in Preferences → Advanced
-- Verify ccusage is installed: `npm list -g ccusage`
+This usually means CCTray cannot find or execute the `ccusage` command.
 
-**"Permission denied" Error**  
-- CCTray requires permission to execute shell commands
-- Check macOS security settings
-- App sandbox is disabled for command execution
+1.  **Verify `ccusage`:** Open Terminal and run `ccusage --version`. If this fails, reinstall it with `npm install -g ccusage`.
+2.  **Check Node.js Path:** CCTray automatically detects Node.js installations from Homebrew, nvm, and standard system paths. If you have a custom setup, you may need to set the path manually.
+    -   Find your Node.js path: `which node`
+    -   Go to CCTray **Preferences → Advanced** and paste the full path into the "Node.js Command" field.
+3.  **Check `ccusage` Path:** If you installed `ccusage` in a non-standard location, you can also specify its path in the Advanced preferences.
+    -   Find your `ccusage` path: `npm list -g ccusage`
+    -   Copy the path to the main script (e.g., `.../lib/node_modules/ccusage/dist/index.js`) and paste it into the "ccusage Script" field.
 
-**Menu Bar Shows "❌"**
-- Verify ccusage CLI is working: `ccusage blocks --live --json`
-- Check Node.js installation and PATH
-- Review error details in the dropdown menu
+#### High CPU Usage
 
-**High CPU Usage**
-- Increase update interval in Preferences → General
-- CCTray uses exponential backoff during errors to reduce load
-
-### Advanced Troubleshooting
-
-**Custom ccusage Installation**
-```bash
-# Find your ccusage installation
-npm list -g ccusage
-
-# Configure custom path in Preferences → Advanced
-# Example: /Users/username/.nvm/versions/node/v20.11.0/lib/node_modules/ccusage/dist/index.js
-```
-
-**Debug Mode**
-Enable detailed logging by running CCTray from Terminal:
-```bash
-/Applications/CCTray.app/Contents/MacOS/CCTray
-```
-
-## 📄 License
-
-MIT License - see LICENSE file for details.
+-   Increase the **Update Interval** in **Preferences → General** to a higher value (e.g., 10-15 seconds). CCTray uses exponential backoff during errors to prevent high CPU usage, but frequent updates can still be resource-intensive.
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Contributions are welcome! Please feel free to fork the repository, make changes, and open a pull request.
 
-## 📞 Support
+1.  Fork the repository.
+2.  Create a feature branch (`git checkout -b feature/amazing-feature`).
+3.  Commit your changes following the convention below.
+4.  Push to the branch (`git push origin feature/amazing-feature`).
+5.  Open a Pull Request.
 
-- **Issues**: [GitHub Issues](https://github.com/goniszewski/cctray/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/goniszewski/cctray/discussions)
+### Commit Messages
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). Please structure your commit messages accordingly. This helps in automating changelogs and makes the history more readable.
+
+**Examples:**
+-   `feat: Add new burn rate color option`
+-   `fix: Correctly parse cost from JSON output`
+-   `docs: Update README with installation instructions`
+-   `refactor: Improve performance of data fetching service`
+
+## 🙏 Acknowledgements
+
+-   This project was heavily inspired by the functionality of [ccowl](https://github.com/sivchari/ccowl) by [@sivchari](https://github.com/sivchari).
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ for the Claude Code community**
+**Made with ❤️ for the Claude community**

@@ -398,7 +398,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = CCTray;
+				INFOPLIST_KEY_CFBundleGetInfoString = "CCTray - macOS menu bar app for Claude Code usage monitoring with real-time cost tracking, burn rate monitoring, and session analytics.";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Robert Goniszewski (@goniszewski) - https://github.com/goniszewski/cctray";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -423,7 +426,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = CCTray;
+				INFOPLIST_KEY_CFBundleGetInfoString = "CCTray - macOS menu bar app for Claude Code usage monitoring with real-time cost tracking, burn rate monitoring, and session analytics.";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Robert Goniszewski (@goniszewski) - https://github.com/goniszewski/cctray";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

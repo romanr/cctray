@@ -40,7 +40,7 @@ CCTray is a **macOS menu bar application** that monitors Claude Code usage throu
 
 **External Dependencies:**
 - Requires `ccusage` CLI tool (Node.js based)
-- Default path: `/Users/goniszewski/.nvm/versions/node/v20.11.0/lib/node_modules/ccusage/dist/index.js`
+- Default path: `~/.nvm/versions/node/v20.11.0/lib/node_modules/ccusage/dist/index.js`
 - **Node.js Detection**: Automatically searches common installation paths:
   - Homebrew: `/opt/homebrew/bin/node`
   - System: `/usr/local/bin/node`, `/usr/bin/node`
