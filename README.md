@@ -1,5 +1,12 @@
-# CCTray
-
+# 
+```
+ ██████╗  ██████╗ ████████╗ ██████╗   █████╗  ██╗   ██╗
+ ██╔════╝ ██╔════╝ ╚══██╔══╝ ██╔══██╗ ██╔══██╗ ╚██╗ ██╔╝
+ ██║      ██║         ██║    ██████╔╝ ███████║  ╚████╔╝
+ ██║      ██║         ██║    ██╔══██╗ ██╔══██║   ╚██╔╝
+ ╚██████╗ ╚██████╗    ██║    ██║  ██║ ██║  ██║    ██║
+  ╚═════╝  ╚═════╝    ╚═╝    ╚═╝  ╚═╝ ╚═╝  ╚═╝    ╚═╝
+```
 [![Build Status](https://img.shields.io/github/actions/workflow/status/goniszewski/cctray/main.yml?branch=main&style=for-the-badge)](https://github.com/goniszewski/cctray/actions)
 [![Latest Release](https://img.shields.io/github/v/release/goniszewski/cctray?style=for-the-badge)](https://github.com/goniszewski/cctray/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
